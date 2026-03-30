@@ -1,3 +1,5 @@
+# transaction-monitor-platform
+Based on Spring Boot + Kafka asynchronous consumption of microservice exception messages, integrate a large model (OpenAI API) for root cause analysis and suggestion generation, exploring practical integration scenarios between Java backend and large model capabilities.
 # Transaction Monitor Platform
 
 交易监控平台，用于实时监控服务异常、分析根因并发送预警通知。
@@ -37,51 +39,3 @@
 - Docker Compose
 
 ### 启动步骤
-
-1. **构建项目**
-
-   ```bash
-   mvn clean package -DskipTests
-   ```
-
-2. **启动服务**
-
-   ```bash
-   docker-compose up -d
-   ```
-
-   这会启动以下服务：
-   - MySQL 8.0（端口：3306）
-   - Kafka（端口：9092）
-   - 监控平台（端口：8080）
-
-3. **查看日志**
-
-   ```bash
-   docker-compose logs -f
-   ```
-
-4. **测试接口**
-
-   发送测试预警：
-   ```bash
-   curl -X POST http://localhost:8080/api/alert/test \
-   -H "Content-Type: application/json" \
-   -d '{"serviceName": "test-service", "riskLevel": "HIGH"}'
-   ```
-
-### 环境变量
-
-需要设置以下环境变量：
-
-- `OPENAI_API_KEY` - OpenAI API 密钥
-- `DINGTALK_WEBHOOK` - 钉钉机器人 Webhook 地址
-- `EMAIL_USERNAME` - 邮件发件人用户名
-- `EMAIL_PASSWORD` - 邮件发件人密码
-- `EMAIL_FROM` - 邮件发件人地址
-
-### 停止服务
-
-```bash
-docker-compose down
-```
